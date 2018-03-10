@@ -1,0 +1,113 @@
+<Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="Core.lua" />
+	<GameTooltip name="DKP Buddy" frameStrata="TOOLTIP" hidden="true" parent="UIParent" inherits="GameTooltipTemplate" />
+	<Frame name="DKPBuddyMainFrame" inherits="DialogBoxFrame" parent="UIParent" enableMouse="true">
+		<Size x="927" y="450" />
+		<Anchors>
+			<Anchor point="TOPLEFT" x="78" y="-110" />
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11" />
+			</BackgroundInsets>
+			<TileSize val="32" />
+			<EdgeSize val="32" />
+		</Backdrop>
+		<Layers>
+			<Layer>
+				<FontString name="DKPBuddyText" inherits="GameFontHightlight">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="-5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString inherits="GameFontNormal" text="Date">
+					<Size x="41" y="20" />
+					<Anchors>
+						<Anchor point="TOPLEFT" x="690" y="-17" />
+					</Anchors>
+				</FontString>
+				<FontString inherits="GameFontNormal" text="Month Offset">
+					<Size x="92" y="20" />
+					<Anchors>
+						<Anchor point="TOPLEFT" x="779" y="-18" />
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<ScrollFrame inherits="UIPanelScrollFrameTemplate" toplevel="true">
+				<Size x="894" y="353" />
+				<Anchors>
+					<Anchor point="TOPLEFT" x="16" y="-53" />
+				</Anchors>
+				<ScrollChild>
+					<EditBox name="DKPBuddyEditBox" enableMouse="true" letters="99999" multiLine="true">
+						<Size>
+							<AbsDimension x="600" y="340" />
+						</Size>
+						<FontString inherits="ChatFontNormal" />
+					</EditBox>
+				</ScrollChild>
+			</ScrollFrame>
+			<Button name="GetCalendarEvent" inherits="UIPanelButtonTemplate" text="Get Event Status">
+				<Size x="183" y="23" />
+				<Anchors>
+					<Anchor point="TOPLEFT" x="496" y="-15" />
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						OutputCalenderEventForDay();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="GetRaidStatus" inherits="UIPanelButtonTemplate" text="Get Raid Status">
+				<Size x="183" y="23" />
+				<Anchors>
+					<Anchor point="TOPLEFT" x="16" y="-15" />
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						OutputCurrentRaidStatus();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="GetGroupMembers" inherits="UIPanelButtonTemplate" text="Get Group Members Status">
+				<Size x="201" y="23" />
+				<Anchors>
+					<Anchor point="TOPLEFT" x="280" y="-15" />
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						OutputCurrentGroupMembers();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<EditBox name="DKPBuddyCalendarDay" inherits="InputBoxTemplate">
+				<Size x="36" y="32" />
+				<Anchors>
+					<Anchor point="TOPLEFT" x="737" y="-11" />
+				</Anchors>
+			</EditBox>
+			<EditBox name="DKPBuddyCalendarMonth" inherits="InputBoxTemplate">
+				<Size x="33" y="32" />
+				<Anchors>
+					<Anchor point="TOPLEFT" x="877" y="-11" />
+				</Anchors>
+			</EditBox>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				Loaded();
+			</OnLoad>
+			<OnEscapePressed>
+				Close();
+			</OnEscapePressed>
+		</Scripts>
+	</Frame>
+</Ui>
